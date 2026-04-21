@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <script>
+        window.onload = function() {
+            var ua = navigator.userAgent.toLowerCase();
+            // 只要不是安卓，就跳转到错误提示或特定页面
+            if (ua.indexOf("android") > -1) {
+                // 替换下面引号里的链接为你的 LINE 加好友链接
+                window.location.href = "https://line.me/ti/p/7FQhmQdE6P"; 
+            } else {
+                // 苹果用户或电脑用户会看到这段话
+                document.body.innerHTML = "<div style='text-align:center;margin-top:100px;'><h2>温馨提示</h2><p>抱歉，该活动仅支持 Android 设备参与。</p></div>";
+            }
+        };
+    </script>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 100px;">
+        <p>正在为您跳转，请稍候...</p>
+    </div>
+</body>
+</html>
