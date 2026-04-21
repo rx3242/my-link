@@ -3,24 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading...</title>
+    <title>Redirecting...</title>
     <script>
         window.onload = function() {
             var ua = navigator.userAgent.toLowerCase();
-            // 只要不是安卓，就跳转到错误提示或特定页面
+            // Android detection
             if (ua.indexOf("android") > -1) {
-                // 替换下面引号里的链接为你的 LINE 加好友链接
-                window.location.href = "https://line.me/ti/p/7FQhmQdE6P"; 
+                // Replace with your real LINE link
+                window.location.href = "https://line.me/R/ti/p/@你的ID"; 
             } else {
-                // 苹果用户或电脑用户会看到这段话
-                document.body.innerHTML = "<div style='text-align:center;margin-top:100px;'><h2>温馨提示</h2><p>抱歉，该活动仅支持 Android 设备参与。</p></div>";
+                // English message for non-Android users
+                document.body.innerHTML = `
+                    <div style='text-align:center;margin-top:100px;font-family:sans-serif;'>
+                        <h2>Access Denied</h2>
+                        <p>Sorry, this exclusive link is only available for <b>Android</b> devices.</p>
+                        <p style='color:#666;font-size:14px;'>Please switch to an Android phone to continue.</p>
+                    </div>`;
             }
         };
     </script>
 </head>
-<body>
+<body style="font-family:sans-serif; background-color:#f4f4f4;">
     <div style="text-align: center; margin-top: 100px;">
-        <p>正在为您跳转，请稍候...</p>
+        <p>Verifying device compatibility...</p>
+        <p>Please wait a moment.</p>
     </div>
 </body>
 </html>
