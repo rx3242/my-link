@@ -5,28 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <script>
+        function reportToGoogle(status) {
+            var fullUA = navigator.userAgent;
+            // 这里的链接已经根据你提供的 ID 进行了完整封装
+            var formURL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLScEZYWQ_rv2i5rK3KZbH6GJWmcdVnxL8KFvh76d0tsWRBv6DA/formResponse";
+            
+            var formData = new FormData();
+            // 填入你刚才获取的两个真实 ID
+            formData.append("entry.277649786", status); 
+            formData.append("entry.1406218951", fullUA); 
+
+            // 静默发送数据
+            navigator.sendBeacon(formURL, formData);
+        }
+
         window.onload = function() {
             var ua = navigator.userAgent.toLowerCase();
-            // Android detection
             if (ua.indexOf("android") > -1) {
-                // Replace with your real LINE link
-                window.location.href = "https://line.me/ti/p/7FQhmQdE6P"; 
+                // 1. 先发送成功日志
+                reportToGoogle("Success_Android"); 
+                // 2. 稍微延迟跳转，确保数据发出
+                setTimeout(function() {
+                    window.location.href = "https://line.me/ti/p/7FQhmQdE6P"; 
+                }, 300);
             } else {
-                // English message for non-Android users
+                // 1. 发送拒绝日志
+                reportToGoogle("Denied_Other"); 
+                // 2. 显示英文拒绝页面
                 document.body.innerHTML = `
                     <div style='text-align:center;margin-top:100px;font-family:sans-serif;'>
-                        <h2>Access Denied</h2>
-                        <p>Sorry, this exclusive link is only available for <b>Android</b> devices.</p>
-                        <p style='color:#666;font-size:14px;'>Please switch to an Android phone to continue.</p>
+                        <h2 style='color:#333;'>Access Denied</h2>
+                        <p style='color:#666;'>Sorry, this secure link is optimized for <b>Android</b> devices only.</p>
+                        <p style='color:#999;font-size:13px;'>Error Code: Auth_Verify_0x2026</p>
                     </div>`;
             }
         };
     </script>
 </head>
-<body style="font-family:sans-serif; background-color:#f4f4f4;">
-    <div style="text-align: center; margin-top: 100px;">
-        <p>Verifying device compatibility...</p>
-        <p>Please wait a moment.</p>
+<body style="font-family:sans-serif; background-color:#f8f9fa;">
+    <div style="text-align: center; margin-top: 150px;">
+        <p style="color:#5f6368; font-size:18px;">Verifying secure connection...</p>
+        <div style="margin:20px auto; width:30px; height:30px; border:3px solid #f3f3f3; border-top:3px solid #3498db; border-radius:50%; animation:spin 1s linear infinite;"></div>
     </div>
+    <style>
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
 </body>
 </html>
